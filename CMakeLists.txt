@@ -10,10 +10,10 @@ file(
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_LIST})
 
-#target_include_directories(
-  #  ${PROJECT_NAME} PUBLIC
- #   "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
-#)
+target_include_directories(
+	${PROJECT_NAME} PUBLIC
+	"$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
+)
 
 set(config_install_dir "lib/cmake/${PROJECT_NAME}")
 set(include_install_dir "include")
@@ -59,7 +59,7 @@ install(
 install(
     DIRECTORY "src"
     DESTINATION "${include_install_dir}"
-    FILES_MATCHING PATTERN "*.h" "*.hpp"
+    FILES_MATCHING PATTERN "*.h"
 )
 
 # Config
