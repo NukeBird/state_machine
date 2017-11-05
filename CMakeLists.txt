@@ -1,12 +1,21 @@
 cmake_minimum_required(VERSION 3.0)
 project(state_machine VERSION 1.1)
 
+
+file(
+	GLOB_RECURSE 
+	HEADER_FILES
+	"src/*.h"
+	"src/*.hpp"
+)
+
 file(
 	GLOB_RECURSE 
 	SOURCE_LIST
 	"src/*.cpp" 
-	"src/*.h"
 )
+
+set(${SOURCE_LIST} ${SOURCE_LIST} ${HEADER_FILES})
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_LIST})
 
@@ -57,9 +66,8 @@ install(
 # Headers:
 #   * <src>/*.h -> <prefix>/include/*.h
 install(
-    DIRECTORY "src"
-    DESTINATION "${include_install_dir}"
-    FILES_MATCHING PATTERN "*.h"
+    FILES ${HEADER_FILES}
+    DESTINATION "${include_install_dir}/sm"
 )
 
 # Config
