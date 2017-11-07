@@ -1,5 +1,6 @@
 #include "state_machine.h"
 #include "state.h"
+#include <exception>
 
 void StateMachine::push_state(const StateRef& state)
 {
@@ -17,6 +18,9 @@ StateRef StateMachine::pop_state()
 
 StateRef StateMachine::get_current_state() const
 {
+	if (stack.empty())
+		throw std::logic_error("Stack is empty");
+
 	return stack.top();
 }
 
